@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据可视化</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <!-- 头部的盒子 -->
+    <header>
+      <h1>空气质量可视化分析</h1>
+      <div class="showTime"></div>
+      <script>
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+          clearTimeout(t); //清除定时器
+          dt = new Date();
+          var y = dt.getFullYear();
+          var mt = dt.getMonth() + 1;
+          var day = dt.getDate();
+          var h = dt.getHours(); //获取时
+          var m = dt.getMinutes(); //获取分
+          var s = dt.getSeconds(); //获取秒
+          document.querySelector(".showTime").innerHTML =
+            "当前时间：" +
+            y +
+            "年" +
+            mt +
+            "月" +
+            day +
+            "-" +
+            h +
+            "时" +
+            m +
+            "分" +
+            s +
+            "秒";
+          t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+      </script>
+      &
+    </header>
+
+    <!-- 页面主体部分 -->
+    <section class="mainbox">
+      <div class="column">
+        <div class="panel bar">
+          <h2 id="provincename">省级概况</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+
+
+        <div class="panel line">
+          
+          <h2>城市AQI变化曲线</h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+
+
+        <div class="panel pie">
+          
+          <h2 id="citytimedetail">柱形图-就业行业</h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+       <div class="column">
+         <!--no模块制作 -->
+        <!-- <div class="no">
+          <div class="no-hd">
+            <ul>
+              <li>125811</li>
+              <li>100000</li>
+            </ul>
+          </div>
+          <div class="no-bd">
+            <ul>
+              <li>前端需求人数</li>
+              <li>市场供应人数</li>
+            </ul>
+          </div>
+        </div> -->
+        <!-- 地图模块 -->
+        <div class="map">
+          <div class="map1"></div>
+          <div class="map2"></div>
+          <div class="map3"></div>
+          <div class="chart"></div>
+        </div>
+      </div> -->
+      <div class="column">
+
+
+        <div class="panel bar2">
+          
+          <h2 id="provinceleida">饼形图-年龄分布</h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel line2">
+            <h2>
+           
+            各城市AQI对比
+              </h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+
+
+        <div class="panel pie2">
+          <!-- <h2>饼形图-地区分布</h2> -->
+          <h2>不同时间段城市的PM2.5对比 </h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+      
+    </section>
+
+    <!-- <script>
+       window.citydata=[];
+      // function csvToObject(csvString) {
+      //     var csvarry = csvString.split("\r\n");
+      //     var datas = [];
+      //     var headers = csvarry[0].split(",");
+      //     for (var i = 1; i < csvarry.length; i++) {
+      //         var data = {};
+      //         var temp = csvarry[i].split(",");
+      //         for (var j = 0; j < temp.length; j++) {
+      //             data[headers[j]] = temp[j];
+      //         }
+      //         datas.push(data);
+      //     }
+      //     return datas;
+      // }
+      function csvToObject(csvString) {
+          var csvarry = csvString.split("\r\n");
+          var datas = [];
+          var headers = csvarry[0].split(",");
+          for (var i = 3; i < csvarry.length; i++) {
+              var data = {};
+              var temp = csvarry[i].split(",");
+              data["cityname"]=temp[0];
+              data["data"]=[];
+              var t=0;
+              for(var j=1;j<temp.length;j+=15){
+                  var da={};
+                  da["time"]=t;
+                  da["AQI"]=temp[j];
+                  da["PM2.5"]=temp[j+1];
+                  da["PM10"]=temp[j+3];
+                  da["SO2"]=temp[j+5];
+                  da["NO2"]=temp[j+7];
+                  da["O3"]=temp[j+9];
+                  da["CO"]=temp[j+13];
+                  data["data"].push(da);
+              }
+              datas.push(data);
+          }
+          return datas;
+      }
+
+
+      function FuncCSVInport() {
+          $("#csvFileInput").val("");
+          $("#csvFileInput").click();
+      }
+
+      function readCSVFile(obj) {
+          var reader = new FileReader();
+          reader.readAsText(obj.files[0]);
+          reader.onload = function () {
+              var data = csvToObject(this.result);
+              //console.log(data);//data为csv转换后的对象
+              citydata=data;
+          }
+      }
+
+  </script> -->
+   <script src="provinces.js"></script>
+   <script src="citydata.js"></script>
+   <script src="proAQI.js"></script>
+   <script src="searchPro.js"></script>
+   <script src="js/flexible.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <!-- 先引入jquery -->
+    <script src="js/jquery.js"></script>
+    <!-- 必须先引入china.js 这个文件 因为中国地图需要 -->
+    <script src="js/china.js"></script>
+    <script src="province/anhui.js"></script>
+    <script src="province/aomen.js"></script>
+    <script src="province/beijing.js"></script>
+    <script src="province/chongqing.js"></script>
+    <script src="province/fujian.js"></script>
+    <script src="province/gansu.js"></script>
+    <script src="province/guangdong.js"></script>
+    <script src="province/guangxi.js"></script>
+    <script src="province/guizhou.js"></script>
+    <script src="province/hainan.js"></script>
+    <script src="province/hebei.js"></script>
+    <script src="province/heilongjiang.js"></script>
+    <script src="province/henan.js"></script>
+    <script src="province/hubei.js"></script>
+    <script src="province/hunan.js"></script>
+    <script src="province/jiangsu.js"></script>
+    <script src="province/jiangxi.js"></script>
+    <script src="province/jilin.js"></script>
+    <script src="province/liaoning.js"></script>
+    <script src="province/neimenggu.js"></script>
+    <script src="province/ningxia.js"></script>
+    <script src="province/qinghai.js"></script>
+    <script src="province/shandong.js"></script>
+    <script src="province/shanghai.js"></script>
+    <script src="province/shanxi.js"></script>
+    <script src="province/shanxi1.js"></script>
+    <script src="province/sichuan.js"></script>
+    <script src="province/taiwan.js"></script>
+    <script src="province/tianjin.js"></script>
+    <script src="province/xianggang.js"></script>
+    <script src="province/xinjiang.js"></script>
+    <script src="province/xizang.js"></script>
+    <script src="province/yunnan.js"></script>
+    <script src="province/zhejiang.js"></script>
+   <script src="js/index.js"></script>
+   <script>
+     mapp(proAQI);
+     console.log(proAQI);
+   </script>
+   <!-- <script>
+       function proAQI(citydata){
+           var prodata=[
+               {
+                   name:"北京",
+                   data:[]
+               },
+               {
+                   name:"天津",
+                   data:[]
+               },
+               {
+                   name:"上海",
+                   data:[]
+               },
+               {
+                   name:"重庆",
+                   data:[]
+               },
+               {
+                   name:"河北",
+                   data:[]
+               },
+               {
+                   name:"山西",
+                   data:[]
+               },
+               {
+                   name:"辽宁",
+                   data:[]
+               },
+               {
+                   name:"吉林",
+                   data:[]
+               },
+               {
+                   name:"黑龙江",
+                   data:[]
+               },
+               {
+                   name:"江苏",
+                   data:[]
+               },
+               {
+                   name:"浙江",
+                   data:[]
+               },
+               {
+                   name:"安徽",
+                   data:[]
+               },
+               {
+                   name:"福建",
+                   data:[]
+               },
+               {
+                   name:"江西",
+                   data:[]
+               },
+               {
+                   name:"山东",
+                   data:[]
+               },
+               {
+                   name:"河南",
+                   data:[]
+               },
+               {
+                   name:"湖北",
+                   data:[]
+               },
+               {
+                   name:"湖南",
+                   data:[]
+               },
+               {
+                   name:"广东",
+                   data:[]
+               },
+               {
+                   name:"海南",
+                   data:[]
+               },
+               {
+                   name:"四川",
+                   data:[]
+               },
+               {
+                   name:"贵州",
+                   data:[]
+               },
+               {
+                   name:"云南",
+                   data:[]
+               },
+               {
+                   name:"陕西",
+                   data:[]
+               },
+               {
+                   name:"甘肃",
+                   data:[]
+               },
+               {
+                   name:"青海",
+                   data:[]
+               },
+               {
+                   name:"台湾",
+                   data:[]
+               },
+               {
+                   name:"内蒙古",
+                   data:[]
+               },
+               {
+                   name:"广西",
+                   data:[]
+               },
+               {
+                   name:"西藏",
+                   data:[]
+               },
+               {
+                   name:"宁夏",
+                   data:[]
+               },
+               {
+                   name:"新疆",
+                   data:[]
+               },
+               {
+                   name:"香港",
+                   data:[]
+               },
+               {
+                   name:"澳门",
+                   data:[]
+               }
+
+           ];
+           for(var i=0;i<prodata.length;i++){
+               for(var j=0;j<24;j++){
+                   var da={};
+                   da["time"]=j;
+                   da["AQI"]=0;
+                   da["citycount"]=0;
+                   prodata[i].data.push(da);
+               }
+           }
+           
+           for(var i=0;i<citydata.length;i++){
+               var proname=searchPro(citydata[i].cityname+"市");
+               for(var j=0;j<prodata.length;j++){
+                   if(proname==prodata[j].name){
+                       for(var k=0;k<citydata[i].data.length;k++){
+                           prodata[j].data[k].AQI+=parseInt(citydata[i].data[k].AQI);
+                           prodata[j].data[k].citycount++;
+                       }
+                   }
+               }
+           }
+           for(var i=0;i<prodata.length;i++){
+               for(var j=0;j<prodata[i].data.length;j++){
+                   prodata[i].data[j].AQI=parseInt(prodata[i].data[j].AQI/prodata[i].data[j].citycount);
+               }
+           }
+          // console.log(prodata);
+         
+           return prodata;
+       }
+       window.onload=proAQI(citydata);
+   </script> -->
+   <!-- <script>
+       var citydata;
+       // function csvToObject(csvString) {
+       //     var csvarry = csvString.split("\r\n");
+       //     var datas = [];
+       //     var headers = csvarry[0].split(",");
+       //     for (var i = 1; i < csvarry.length; i++) {
+       //         var data = {};
+       //         var temp = csvarry[i].split(",");
+       //         for (var j = 0; j < temp.length; j++) {
+       //             data[headers[j]] = temp[j];
+       //         }
+       //         datas.push(data);
+       //     }
+       //     return datas;
+       // }
+       function csvToObject(csvString) {
+           var csvarry = csvString.split("\r\n");
+           var datas = [];
+           var headers = csvarry[0].split(",");
+           for (var i = 3; i < csvarry.length; i++) {
+               var data = {};
+               var temp = csvarry[i].split(",");
+               data["cityname"]=temp[0];
+               data["data"]=[];
+               var t=0;
+               for(var j=1;j<temp.length;j+=15){
+                   var da={};
+                   da["time"]=t;
+                   da["AQI"]=temp[j];
+                   da["PM2.5"]=temp[j+1];
+                   da["PM10"]=temp[j+3];
+                   da["SO2"]=temp[j+5];
+                   da["NO2"]=temp[j+7];
+                   da["O3"]=temp[j+9];
+                   da["CO"]=temp[j+13];
+                   data["data"].push(da);
+               }
+               datas.push(data);
+           }
+           return datas;
+       }
+
+
+       function FuncCSVInport() {
+           $("#csvFileInput").val("");
+           $("#csvFileInput").click();
+       }
+
+       function readCSVFile(obj) {
+           var reader = new FileReader();
+           reader.readAsText(obj.files[0]);
+           reader.onload = function () {
+               var data = csvToObject(this.result);
+              // console.log(data);//data为csv转换后的对象
+               citydata=data;
+               proAQI(citydata);
+           }
+       }
+
+   </script> -->
+    
+    
+
+  </body>
+</html>
