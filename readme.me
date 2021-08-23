@@ -1,1 +1,109 @@
+组长：    董宇然 Yuran Dong 伦斯勒理工大学 联系邮箱：782143494@qq.com
+组员：    刘大鹏 Dapeng Liu 山东大学
+         刘予 Yu Liu 深圳大学
+         王文兴 Wenxin Wang 山东大学
+         杨康康 Kangkang Yang 山东大学
+         （排名不分先后，仅以拼音顺序为参考顺序）
 
+
+
+历史数据来源：http://www.shujujishi.com/dataset/de6a31b9-aa1e-496c-bfa7-11f47b4f5c8a.html
+主要使用以上链接中（中国空气质量历史数据集）2021年7月9日的数据组
+
+题目以及样例网址：http://www.chinavis.org/2021/challenge.html
+原数据地址：http://naq.cicidata.top:10443/chinavis/opendata
+
+参考数据、使用工具链接：
+https://www.makeapie.com/editor.html?c=xa5_zRRpes   地图柱状图组合
+https://www.makeapie.com/editor.html?c=xrJZ60TVIg   全国主要城市 业务量
+https://www.makeapie.com/editor.html?c=xNRGPXwY0X   公司AQI仪表盘展示
+https://www.cnblogs.com/telwanggs/p/7183302.html    ECharts实例开发学习笔记二——时间轴
+https://gitee.com/MTrun/echarts-map-json/           ECharts省份地图数据合集
+
+
+
+我们这次的作品使用了中国空气质量历史数据集中2021年7月9日的数据组，围绕分析大气污染时空分布模式、时空演变态势、识别主要污染源、分析污染比率、比较不同城市同一时间段的污染差异，对数据进行多方面处理，并最终设计实现了全国大气污染可视分析系统，附加六份不同方面的数据可视图。 
+首先我们对数据进行整理、数据清洗、数据统计、AQI等级计算等预处理操作。对地区污染物组成、主要污染源进行分析。在分析数据的过程中，基于不同的数据粒度，设计实现了完整的可视分析系统。我们使用了日均数据分析页面针对日均数据做可视分析。使用污染指标与气象数据地图、污染指标线圈图、AQI 排行榜、污染指标与 AQI 平行坐标等视图提供对污染时空分布模式与时空演变态势的分析；并结合灵活丰富的交互，用户利用该页面其他视图做更细粒度的兴趣点分析。对小时数据分析页面主要通过对比模块展开除时空分布模式与演变态势，设计实现了城市大气污染气象数据环，高效准确地表示一天内的多维数据，完成多个城市与日期的对比分析任务。 
+位于环境可视化系统的中间，我们可以看到一个随着时间变化的全国大气污染程度变化表，随着时间的变化（0-24时），我们统计的数据在系统中呈现了不同等级的污染程度，使数据可视化。左侧下方用颜色区分了一个地区六个不同等级的污染程度。点击下方的暂停/播放键即可具体观察某一具体时刻的全国污染程度图，点击正下方的时刻点，即可查看目标时间的全国污染程度图。点击大图正中央的省份，在左侧上方以及右侧上方的小图可以查看到指定省份的时刻污染程度图以及目前省份的污染源分析雷达成像图。
+用简单的方式凸显出大气污染的态势与情况，大气污染程度的评判数据，常用于表示城市的短期空气质量状况和变化趋势，即空气质量指数（Air Quality Index），简称AQI，其峰值出现于10点到16点，地理位置处于我国的中东部。
+
+
+
+左侧以及右侧的小图分别代表着不同的含义：
+1. 左侧上方的数据图为当前所点击省份的污染程度图。将鼠标移动到左侧上方小图中所属省份的任意一个城市，即可显示当前城市的AQI指数以及其污染程度。
+2. 左侧中间的数据图为单个城市的AQI变化曲线图。其为青岛在0-24时之间城市AQI的变化曲线，数据间隔为1小时，使用折线图进行数据可视化，显示随时间而变化的连续数据，凸显了青岛在相等时间间隔下数据的趋势
+3. 左侧下方的数据图为一个城市在某一特定时间段的不同污染源的各项数据，青岛15时污染源分析。数据涵括：PM2.5, PM10, SO2, NO2, O3, CO。
+4. 右侧下方的数据图为不同时间段同一城市的PM2.5对比图。青岛PM2.5对比，分别对比青岛在不同时间段（间隔为五小时）PM2.5的数据变化。在数据接近的情况下，使用柱状图进行数据可视化，以扩大表现数据间的差距，增强理解和清晰度。
+5. 右侧中间的数据图为同一时间段不同城市的AQI对比图。青岛、北京、上海、广州、深圳位于同时段的AQI数据对比，使用折线图进行数据可视化，显示随时间而变化的连续数据，凸显了以上五大城市在相等时间间隔下数据的趋势。点击图像上方的城市名称即可隐藏/显示其数据折线图，方便进一步的对比与参考。
+6. 右侧上方的数据图为为当前所点击省份的污染源分析雷达图。数据涵括：PM2.5, PM10, SO2, NO2, O3, CO。
+
+
+
+最后，我们在使用系统展开案例分析的过程中发现大部分AQI峰值，即污染严重情况经常同时发生于大部分城市的中午与下午，PM2.5、PM10、SO2、NO2、CO 之间存在正相关性，而 O3 与其他污染指标多为负相关，且与气象因素的相关性在不同地区表现不同；通过视图可以分析出部分污染特点明显的地区，并结合实际情况分析其污染类型的变化与变化的原因。与此同时，中国境内中东部分经常有雾霾天气形成有以下几个方面的原因。
+1. 中国中东部分大气空气气压低，空气不流动、人口密度大是其主要因素。由于空气的不流动，使空气中的微小颗粒容易聚集，多漂浮在空气中。
+2. 城市中地面灰尘较多，空气湿度较低，地面来往的人流和车流经常搅动灰尘以漂浮空中。
+3. 汽车尾气为主要的污染物排放，近年来发达城市的汽车逐步增多，各大城市地区开始车牌限号为一个有力的证据，排放的汽车尾气也是雾霾的一个因素。
+4. 工厂制造出的二次污染。
+5. 冬季取暖排放的CO2等污染物。
+防治大气污染是一个复杂且庞大系统的系统工程，需要个人、集体、国家乃至全球各国的共同努力。减轻大气污染根本的办法是尽一切可能减少污染物的排放。具体措施建议如下：
+（1）改善能源结构并大力开发新能源技术，尽量采用无污染或低污染能源：充分使用风能、水能、太阳能等对环境污染无害的能源。
+（2）对燃料进行预处理：进行脱硫、脱氮并提高尾气排放前的处理技术（过滤、吸收、冷却等）。
+（3）大力开展植树造林活动，提高环境的自我净化能力。
+（4）改进化工、冶金、钢铁、水泥等高耗能、高污染企业的工艺技术并严格制定和实施治理大气污染的产业政策，出台一系列防止重污染产生的工业行业政策标准。
+（5）如今复合型污染开始显现，PM2.5治理到一定程度后，臭氧还是上升，今后治理大气的重点可以逐渐往复合型污染转变。
+
+
+
+This is a project designed for Chinese competition, so there wouldn't be any English version for the data and final results. Sorry about that.
+The following is the translation of introduction of the project.
+
+
+
+Team leader: Dong Yuran Yuran Dong Rensselaer Polytechnic Institute contact email: 782143494@qq.com
+Team member: Dapeng Liu  Shandong University
+              Liu Yu   Shenzhen University
+              Wenxin Wang  Shandong University
+              Kang Kang Yang  Shandong University
+(there is no ranking for the order, Pinyin order is the reference order)
+
+
+
+Historical data source: http://www.shujujishi.com/dataset/de6a31b9-aa1e-496c-bfa7-11f47b4f5c8a.html
+The data set of July 9, 2021 in the above link (China Air Quality historical data set) is mainly used
+
+Title and sample website: http://www.chinavis.org/2021/challenge.html
+Original data address: http://naq.cicidata.top:10443/chinavis/opendata
+Links of reference data & tools:
+https://www.makeapie.com/editor.html?c=xa5_ Zrrpes        map histogram combination
+https://www.makeapie.com/editor.html?c=xrJZ60TVIg         Business volume of major cities in China
+https://www.makeapie.com/editor.html?c=xNRGPXwY0X         Company AQI dashboard display
+https://www.cnblogs.com/telwanggs/p/7183302.html          Ecarts of example development learning notes II with timeline
+https://gitee.com/MTrun/echarts-map-json/                 Ecarts of provincial map data set
+
+
+
+Our work this time uses the data set from the China Air Quality Historical Data Set on July 9, 2021. It focused on analyzing the spatial and temporal distribution patterns of air pollution, the temporal and spatial evolution, and pollution difference. By identifying major pollution sources, analyzing pollution rates, and comparing different cities in the same time period, the data was processed in many aspects, and finally the outcome was the national air pollution visual analysis system, with six different data views.
+First, we performed preprocessing operations such as data sorting, data cleaning, data statistics, and AQI level calculation. Analyzed the composition of regional pollutants and main pollution sources. In the process of analyzing data, based on different data granularity, a complete visual analysis system was designed and implemented. We utilized the daily average data analysis page to do visual analysis on the daily average data. Used pollution indicator and weather data map, pollution indicator coil graph, AQI ranking, pollution indicator and AQI parallel coordinates and other views to provide analysis of pollution time and space distribution patterns and time and space evolution; combined with flexible and rich interaction, users are able to use the other pages on this page. The view did a more fine-grained point of interest analysis. The hourly data analysis page mainly used the comparison module to expand the temporal and spatial distribution patterns and evolutionary trends. The design realized the urban air pollution meteorological data loop, which efficiently and accurately represented the multi-dimensional data within a day, and completed the comparative analysis task of multiple cities and dates.
+Located in the middle of the environmental visualization system, we can see a national air pollution degree change table that changes over time. As time changes (0-24 o'clock), our statistical data presents different levels of pollution in the system To visualize the data. On the bottom left, colors are used to distinguish six different levels of pollution in an area. Click the pause/play button below to observe the national pollution level map at a specific time in detail, and click the time point directly below to view the national pollution level map at the target time. Click on the province in the center of the big picture, and on the upper left and the small pictures on the upper right, you can view the pollution level map of the designated province at the time and the current province's pollution source analysis radar imaging map.
+Highlight the situation and situation of air pollution in a simple way. The evaluation data of air pollution degree is often used to indicate the short-term air quality status and change trend of the city, namely the Air Quality Index (Air Quality Index), abbreviated as AQI, and its peak appears in From 10:00 to 16:00, the geographical position is in the central and eastern part of our country.
+
+The small pictures on the left and right represent different meanings:
+1. The data map on the upper left is the pollution degree map of the province currently clicked. Move the mouse to any city in the province you belong to in the small picture on the upper left to display the current city's AQI index and its pollution level.
+2. The data graph in the middle on the left is the AQI change curve graph of a single city. It is the change curve of the city's AQI between 0-24 o'clock in Qingdao. The data interval is 1 hour. The line graph is used to visualize the data and display continuous data that changes over time, highlighting the trend of Qingdao's data at equal time intervals.
+3. The data chart at the bottom left is the data of different pollution sources in a certain time period in a city, and the pollution source analysis of Qingdao at 15 o'clock. Data includes: PM2.5, PM10, SO2, NO2, O3, CO.
+4. The data chart at the bottom right is a comparison chart of PM2.5 in the same city at different time periods. Comparison of PM2.5 in Qingdao, compare the changes of PM2.5 data in Qingdao in different time periods (with an interval of five hours). When the data is close, use a histogram to visualize the data to expand the gap between the performance data and enhance understanding and clarity.
+5. The data chart in the middle on the right is the AQI comparison chart of different cities in the same time period. The AQI data comparison of Qingdao, Beijing, Shanghai, Guangzhou, and Shenzhen at the same time period uses a line graph to visualize the data, showing continuous data that changes over time, highlighting the trend of the data in the above five major cities at equal time intervals. Click the city name above the image to hide/show its data line graph for further comparison and reference.
+6. The data map on the upper right is a radar map for the pollution source analysis of the province currently clicked. Data includes: PM2.5, PM10, SO2, NO2, O3, CO.
+
+Finally, in the process of using the system to carry out case analysis, we found that most of the AQI peaks, that is, serious pollution often occurs at noon and afternoon in most cities at the same time, and there is a positive correlation between PM2.5, PM10, SO2, NO2, and CO. O3 and other pollution indicators are mostly negatively correlated, and the correlation with meteorological factors is different in different regions; through the view, some areas with obvious pollution characteristics can be analyzed, and the changes and changes of pollution types can be analyzed based on the actual situation. The reason. At the same time, the frequent haze weather in the Middle East part of China is due to the following reasons.
+1. Part of the atmospheric air pressure in the Middle East of China is low, the air is not flowing, and the population density is the main factor. Due to the non-flowing of the air, the tiny particles in the air tend to gather and float in the air.
+2. There is more dust on the ground in cities, and the air humidity is low. The flow of people and vehicles on the ground often agitates the dust to float in the air.
+3. Automobile exhaust is the main pollutant emission. In recent years, the number of automobiles in developed cities has gradually increased. The number of license plates in major cities is a strong evidence. Automobile exhaust is also a factor of smog.
+4. Secondary pollution produced by the factory.
+5. Pollutants such as CO2 emitted from heating in winter.
+The prevention and control of air pollution is a complex and huge systematic system engineering that requires the joint efforts of individuals, collectives, countries, and even countries around the world. The fundamental way to reduce air pollution is to do everything possible to reduce the emission of pollutants. The specific measures are recommended as follows:
+(1) Improve the energy structure and vigorously develop new energy technologies, and try to use pollution-free or low-polluting energy: make full use of energy that is harmless to environmental pollution, such as wind energy, water energy, and solar energy.
+(2) Pretreatment of fuel: Desulfurization, denitrification and improvement of the treatment technology (filtration, absorption, cooling, etc.) before exhaust gas emission.
+(3) Vigorously carry out tree planting and afforestation activities to improve the self-purification ability of the environment.
+(4) Improve the process technology of high energy-consuming and high-polluting enterprises such as chemical industry, metallurgy, steel, cement, etc., and strictly formulate and implement industrial policies to control air pollution, and introduce a series of industrial industry policy standards to prevent heavy pollution.
+(5) Compound pollution is now beginning to appear. After PM2.5 is treated to a certain level, ozone will still rise. In the future, the focus of atmospheric treatment can gradually shift to compound pollution.
